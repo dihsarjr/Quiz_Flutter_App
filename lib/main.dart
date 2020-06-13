@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,10 +40,17 @@ class _QuizPageState extends State<QuizPage> {
     ),
   ];
 
-  List<String> questions = ['rat', 'cat', 'dog', 'lion', 'monkey'];
+//  List<String> questions = ['rat', 'cat', 'dog', 'lion', 'monkey'];
+//
+//  List<bool> ans = [true, false, true, false, true];
 
-  List<bool> ans = [true, false, true, false, true];
-
+  List<Question> questionBank = [
+    Question('cat', true),
+    Question('rat', false),
+    Question('lion', false),
+    Question('dog', false),
+    Question('monkey', false)
+  ];
   int questionNumber = 0;
 
   @override
@@ -57,7 +65,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -81,7 +89,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = ans[questionNumber];
+                bool correctAnswer = questionBank[questionNumber].questionAns;
                 if (correctAnswer == true) {
                 } else {}
                 setState(() {
@@ -104,7 +112,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = ans[questionNumber];
+                bool correctAnswer = questionBank[questionNumber].questionAns;
                 if (correctAnswer == false) {
                 } else {}
                 setState(() {
