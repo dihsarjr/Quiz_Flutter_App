@@ -39,7 +39,9 @@ class _QuizPageState extends State<QuizPage> {
     ),
   ];
 
-  List<String> questions = ['love', 'jilju', 'shabana', 'shifana', 'jinanan'];
+  List<String> questions = ['rat', 'cat', 'dog', 'lion', 'monkey'];
+
+  List<bool> ans = [true, false, true, false, true];
 
   int questionNumber = 0;
 
@@ -79,6 +81,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAnswer = ans[questionNumber];
+                if (correctAnswer == true) {
+                } else {}
                 setState(() {
                   questionNumber++;
                 });
@@ -99,6 +104,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAnswer = ans[questionNumber];
+                if (correctAnswer == false) {
+                } else {}
                 setState(() {
                   questionNumber++;
                 });
