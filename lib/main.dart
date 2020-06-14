@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/questionBanks.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuestionBanks questionBanks = QuestionBanks();
 
@@ -37,19 +38,29 @@ class _QuizPageState extends State<QuizPage> {
     bool correctAnswer = questionBanks.questionAns();
 
     setState(() {
-      if (userAns == correctAnswer) {
-        scoreKeeper.add(Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
+      if (questionBanks.isFinished() == true) {
+        Alert(
+          context: context,
+          title: 'Finished!',
+          desc: 'You\'ve reached the end of the quiz.',
+        ).show();
+        questionBanks.reset();
+        scoreKeeper = [];
       } else {
-        scoreKeeper.add(Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
-      }
+        if (userAns == correctAnswer) {
+          scoreKeeper.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          scoreKeeper.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
 
-      questionBanks.nextQuestion();
+        questionBanks.nextQuestion();
+      }
     });
   }
 
